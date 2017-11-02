@@ -1,0 +1,70 @@
+* {
+    font-family: 'Playfair Display', serif;
+}
+
+h1 {
+    font-weight: 900;
+}
+
+button, a {
+    cursor: pointer;
+}
+
+body {
+    background: #ffffff url('../img/booksbg.jpg') center center/cover no-repeat;
+    height: 100vh;
+}
+
+.bg-box {
+    background-color: #241909;
+    border: 10px #A87328 solid;
+}
+
+.bg-box-author {
+    background-color: #241909;
+    border: 10px #A87328 solid;
+    width: 40vw;
+    max-height: 70vh;
+}
+
+.bg-nav {
+    background-color: #241909;
+    border-bottom: 10px #A87328 solid;
+}
+
+.btn-bookly {
+    background-color: transparent;
+    border: 3px #A87328 solid;
+    color: white;
+    border-radius: 0;
+}
+
+.btn-bookly:hover {
+    background-color: #A87328;
+}
+
+.bg-dropdown {
+    background-color: #241909;
+    border: 4px #A87328 solid;
+    color: white;
+    border-radius: 0;
+}
+
+.bg-dropdown-item {
+    color: white;
+}
+
+.bg-dropdown-item:hover {
+    background-color: #A87328;
+    color: white;
+}
+
+.bg-darkbrown {
+    background-color: #241909;
+}
+
+.modal-content {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}

@@ -11,10 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'indexController@index');
+
+Route::get('/books', 'BooksController@list')->middleware('auth');
+Route::post('/books', 'BooksController@store');
+
+Route::get('/authors', 'AuthorsController@list')->middleware('auth');
+Route::post('/authors', 'AuthorsController@store');
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/homepage', function () {
+    return redirect('/');
+});
+Route::get('/home', function () {
+    return redirect('/');
+});
