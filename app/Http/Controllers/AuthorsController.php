@@ -16,13 +16,20 @@ class AuthorsController extends Controller
     }
 
     public function store() {
+        $request = request();
+
+        $this->validate($request, [
+            'name' => 'required|min:2',
+            'year_of_birth' => 'required|numeric|min:0|max:2100',
+        ]);
+
 
         $author = new Authors();
 
         //insert data
         $author->fill([
-            'name' => request()->input('name'),
-            'year_of_birth' => request()->input('year_of_birth')
+            'name' => $request->input('name'),
+            'year_of_birth' => $request->input('year_of_birth')
         ]);
         $author->save();
 
@@ -30,11 +37,18 @@ class AuthorsController extends Controller
     }
 
     public function edit($id = null) {
+        $request = request();
+
+        $this->validate($request, [
+            'name' => 'required|min:2',
+            'year_of_birth' => 'required|numeric|min:0|max:2100',
+        ]);
+
 
         $author = Authors::findOrFail($id);
         $author->update([
-            'name' => request()->input('name'),
-            'year_of_birth' => request()->input('year_of_birth')
+            'name' => $request->input('name'),
+            'year_of_birth' => $request->input('year_of_birth')
         ]);
         $author->save();
 

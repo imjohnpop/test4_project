@@ -48,7 +48,7 @@
                     </button>
                 </div>
                 <div class="modal-body bg-darkbrown text-white">
-                    <form method="post" action="">
+                    <form class="mb-2" method="post" action="">
                         {{csrf_field()}}
                         <div class="form-group">
                             <label for="name">Name of the author</label>
@@ -60,11 +60,8 @@
                         </div>
                         <button type="submit" class="btn btn-bookly">Submit</button>
                     </form>
-                </div>
-                <div class="modal-footer bg-darkbrown text-white">
-                    <button type="button" class="btn btn-bookly" data-dismiss="modal">Close</button>
                     @if (count($errors) > 0)
-                        <div class="alert alert-danger w-25 mx-auto mt-2">
+                        <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -72,6 +69,9 @@
                             </ul>
                         </div>
                     @endif
+                </div>
+                <div class="modal-footer bg-darkbrown text-white">
+                    <button type="button" class="btn btn-bookly" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -93,7 +93,7 @@
 
                         <!-- Edit Modal -->
                         <div class="modal-body bg-darkbrown text-white togglemodals">
-                            <form method="post" action="{{action('AuthorsController@edit', ['id' => $author->id])}}">
+                            <form class="mb-2" method="post" action="{{action('AuthorsController@edit', ['id' => $author->id])}}">
                                 {{csrf_field()}}
                                 <div class="form-group">
                                     <label for="name">Author's name:</label>
@@ -106,6 +106,15 @@
 
                                 <button type="submit" class="btn btn-bookly">Submit</button>
                             </form>
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="modal-footer">

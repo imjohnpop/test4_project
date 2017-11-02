@@ -85,7 +85,7 @@
 
                     <!-- Edit Modal -->
                     <div class="modal-body bg-darkbrown text-white togglemodals d-none">
-                        <form method="post" action="{{action('BooksController@edit', ['id' => $book->id])}}">
+                        <form class="mb-2" id="form" method="post" action="{{action('BooksController@edit', ['id' => $book->id])}}">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="title">Title of the book</label>
@@ -126,6 +126,15 @@
 
                             <button type="submit" class="btn btn-bookly">Submit</button>
                         </form>
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     </div>
 
                     <div class="modal-footer bg-darkbrown text-white">
@@ -150,7 +159,7 @@
                     </button>
                 </div>
                 <div class="modal-body bg-darkbrown text-white">
-                    <form method="post" action="">
+                    <form class="mb-2" id="form" method="post" action="">
                         {{csrf_field()}}
                         <div class="form-group">
                             <label for="title">Title of the book</label>
@@ -190,6 +199,15 @@
 
                         <button type="submit" class="btn btn-bookly">Submit</button>
                     </form>
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 <div class="modal-footer  bg-darkbrown text-white">
                     <button type="button" class="btn btn-bookly" data-dismiss="modal">Close</button>
