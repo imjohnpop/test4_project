@@ -68,3 +68,15 @@ body {
     -moz-border-radius: 0;
     border-radius: 0;
 }
+
+.progress-bar {
+    background-color: #A87328;
+}
+
+.badge {
+    font-size: 0.8em;
+}
+
+.btn-author {
+    font-size: 0.7em;
+}

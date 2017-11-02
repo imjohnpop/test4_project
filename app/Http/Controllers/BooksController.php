@@ -14,34 +14,40 @@ class BooksController extends Controller
         return $view;
     }
 
-    public function store($id = null) {
+    public function store() {
 
-        if($id) {
-            $book = Books::findOrFail($id);
-            if(isset($book)){
-                $book->fill([
-                    'title' => request()->input('title'),
-                    'author_id' => request()->input('author_id'),
-                    'published_at' => request()->input('published_at'),
-                    'finished_reading_at' => request()->input('finished_reading_at'),
-                    'my_review' => request()->input('my_review'),
-                    'my_rating' => request()->input('my_rating')
-                ]);
-                $book->save();
-            }
-        } else {
-            $book = new Books();
-            $book->update([
-                'title' => request()->input('title'),
-                'author_id' => request()->input('author_id'),
-                'published_at' => request()->input('published_at'),
-                'finished_reading_at' => request()->input('finished_reading_at'),
-                'my_review' => request()->input('my_review'),
-                'my_rating' => request()->input('my_rating')
-            ]);
-            $book->save();
-        }
+        $book = new Books();
+        $book->fill([
+            'title' => request()->input('title'),
+            'author_id' => request()->input('author_id'),
+            'published_at' => request()->input('published_at'),
+            'finished_reading_at' => request()->input('finished_reading_at'),
+            'my_review' => request()->input('my_review'),
+            'my_rating' => request()->input('my_rating')
+        ]);
+        $book->save();
 
+        return redirect()->action('BooksController@list');
+    }
+
+    public function edit($id = null) {
+
+        $book = Books::findOrFail($id);
+        $book->update([
+            'title' => request()->input('title'),
+            'author_id' => request()->input('author_id'),
+            'published_at' => request()->input('published_at'),
+            'finished_reading_at' => request()->input('finished_reading_at'),
+            'my_review' => request()->input('my_review'),
+            'my_rating' => request()->input('my_rating')
+        ]);
+        $book->save();
+
+        return redirect()->action('BooksController@list');
+    }
+
+    public function destroy($id) {
+        Books::where('id', '=', $id)->delete();
         return redirect()->action('BooksController@list');
     }
 }

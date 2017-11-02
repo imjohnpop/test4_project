@@ -28,4 +28,21 @@ class AuthorsController extends Controller
 
         return redirect()->action('AuthorsController@list');
     }
+
+    public function edit($id = null) {
+
+        $author = Authors::findOrFail($id);
+        $author->update([
+            'name' => request()->input('name'),
+            'year_of_birth' => request()->input('year_of_birth')
+        ]);
+        $author->save();
+
+        return redirect()->action('AuthorsController@list');
+    }
+
+    public function destroy($id) {
+        Authors::where('id', '=', $id)->delete();
+        return redirect()->action('AuthorsController@list');
+    }
 }

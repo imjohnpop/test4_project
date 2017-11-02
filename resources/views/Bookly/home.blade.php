@@ -7,7 +7,7 @@
 @section('content')
 
     @if(Auth::check())
-    <main class="d-flex justify-content-center pt-5">
+    <main class="d-flex justify-content-center">
         <div class="h-25 w-25 mt-5 rounded">
             <div class="bg-box p-5">
                 <div class="p-3">
@@ -15,7 +15,7 @@
                 </div>
                 <h1 class="display-4 text-center text-white mt-3">BookLy</h1>
                 <div class="mt-4">
-                    <a class="btn btn-bookly btn-block" href="{{ route('logout') }}"
+                    <a class="btn btn-bookly btn-block text-white" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                         Logout
@@ -29,7 +29,7 @@
         </div>
     </main>
     @else
-    <main class="d-flex justify-content-center pt-5">
+    <main class="d-flex justify-content-center">
         <div class="h-25 w-25 mt-5 rounded">
             <div class="bg-box p-5">
                 <div class="p-3">

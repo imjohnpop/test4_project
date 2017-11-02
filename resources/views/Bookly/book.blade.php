@@ -6,7 +6,7 @@
 
 @section('content')
     <main>
-        <div class="bookshelf">
+        <div class="bookshelf mt-5">
 
             <a data-toggle="modal" data-target="#welcomeModal">
                 <div class="book book-green">
@@ -68,21 +68,24 @@
 
                     <!-- Detail Modal -->
                     <div class="modal-body bg-darkbrown text-white togglemodals">
-                        <h6>My thoughts</h6>
+                        <h6>My thoughts:</h6>
+                        <hr class="bg-white">
                         <p>{{ $book->my_review }}</p>
                         <div>
-                            <span>Book published at: {{ $book->published_at }}</span>
-                            <span>Finished reading: {{ $book->finished_reading_at }}</span>
-                            <span>Author: {{ $author->name }}</span>
+                            <span class="badge badge-dark">Book published at: {{ $book->published_at }}</span>
+                            <span class="badge badge-dark">Finished reading: {{ $book->finished_reading_at }}</span>
+                            <span class="badge badge-dark">Author:  <?php if(isset($author)) { echo $author->name;}?></span>
                         </div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: <?php echo ($book->my_rating * 10); ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div><?php echo ($book->my_rating * 10); ?>%
+                        <div class="progress mt-2">
+                            <div class="progress-bar" role="progressbar" style="width: <?php echo ($book->my_rating * 10); ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                <strong class="ml-1"><?php echo ($book->my_rating * 10); ?>%</strong>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Edit Modal -->
                     <div class="modal-body bg-darkbrown text-white togglemodals d-none">
-                        <form method="post" action="">
+                        <form method="post" action="{{action('BooksController@edit', ['id' => $book->id])}}">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="title">Title of the book</label>
@@ -106,7 +109,7 @@
 
                                     <?php $authors = \App\Authors::get();?>
                                     @foreach($authors as $author)
-                                        <option value="{{ $author->id }}">{{ $author->name }}</option>
+                                        <option value="{{ $author->id }}" @if($book->author_id == $author->id) selected @endif>{{ $author->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -128,6 +131,7 @@
                     <div class="modal-footer bg-darkbrown text-white">
                         <button type="button" class="btn btn-bookly" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-bookly toggleBtn">Edit</button>
+                        <a href="{{action('BooksController@destroy', ["id" => "$book->id"])}}" class="btn btn-bookly text-white">Delete</a>
                     </div>
                 </div>
             </div>

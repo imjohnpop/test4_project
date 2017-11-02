@@ -15,9 +15,13 @@ Route::get('/', 'indexController@index');
 
 Route::get('/books', 'BooksController@list')->middleware('auth');
 Route::post('/books', 'BooksController@store');
+Route::post('/books/{id}', 'BooksController@edit');
+Route::get('/books/{id}', 'BooksController@destroy');
 
 Route::get('/authors', 'AuthorsController@list')->middleware('auth');
 Route::post('/authors', 'AuthorsController@store');
+Route::post('/authors/{id}', 'AuthorsController@edit');
+Route::get('/authors/{id}', 'AuthorsController@destroy');
 
 
 Auth::routes();
